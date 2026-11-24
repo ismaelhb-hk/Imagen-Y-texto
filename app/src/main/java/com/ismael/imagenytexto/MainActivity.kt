@@ -3,6 +3,7 @@ package com.ismael.imagenytexto
 import android.media.Image
 import android.os.Bundle
 import android.text.Layout
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,9 +13,16 @@ import androidx.compose.foundation.content.MediaType.Companion.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +38,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            AppImagenTexto()
+
+
 
         }
     }
@@ -37,7 +48,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppImagenTexto() {
-    Box(modifier = Modifier.fillMaxSize().padding(all = 20.dp)){
+    var colorFondo by remember { mutableStateOf(Color.Blue) }
+    Box(modifier = Modifier.fillMaxSize()
+        .padding(all = 20.dp))
+    {
+        Button(
+            onClick = {colorFondo = Color.Yellow},
+            modifier = Modifier.align(Alignment.BottomEnd)
+
+        ) {
+            Text(
+                text = "Cambiar",
+                color = Color.Red
+                )
+        }
         Image(
             painter = painterResource(id = R.drawable.moto),
             contentDescription = "Imagen de un Perro bien duro",
